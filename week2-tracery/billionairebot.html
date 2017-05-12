@@ -1,0 +1,28 @@
+<script src="../lib/tracery.js"></script>
+<script src="../lib/mousetrap.min.js"></script>
+<script src="../lib/jquery-1.11.1.min.js"></script>
+<h1>Text will go here</h1>
+<button onclick="generate()">Generate</button>
+<script>
+var grammarObj = {
+	"origin": ["#picture# was #found# #location# #depicting# #image#", "#container# was #found# #location# containing #object#", "#surface# was #found# #location# inscribed with #words#", "#remains# #found# #location# made from #material#"],
+	"picture": ["Stela", "Frieze", "Altar", "Textile", "Shroud", "Monument", "Statuette", "Bas Relief", "Coin", "Monolith", "Amulet"],
+	"depicting": ["depicting", "showing", "in the shape of", "with the image of"],
+	"image": ["the dismemberment of the gods", "the conception of a queen", "sixty dogs screaming at the sun", "the construction of a mountainous city", "geometric patterns", "a series of interlocking whorled glyphs", "a scene too worn to decipher, soldiers training with staves", "a gargantuan serpent resting in fields of maize", "two women playing a complex board game", "an unknown star chart", "a map of Mars’ craters", "an insect radiating light", "hundreds of eyes", "a man with the legs of a scorpion"],
+	"container": ["Temple", "Ship", "Headdress", "Palanquin", "Sarcophagus", "Chamber", "Sepulchre", "Mausoleum", "Pyramid", "Ziggurat", "Crypt", "Dungeon", "Oubliette", "Palace", "Helmet", "Catacomb"]
+	"containing": ["containing", "hiding"],
+	"object": ["a noxious gas", "a collection of snuff bottles", "hundreds of tiny sparrow skeletons", "a stone sphere the size of a human head", "a single iridescent arrowhead", "a nest of scarabs", "a hoard of sightless worms", "a blank vellum scroll", "a charred library", "a hand preserved in a jar of yellow fluid"],
+	"surface": ["Ring", "Scroll", "Bracelet", "Pendent", "Tablet", "Codex", "Sword"],
+	"words": ["an epic poem", "feasting recipes", "instructions for deicide", "an unknown enchantment", "a fifteen-month calendar", "a procedure for making explosives", "a set of philosophical treatises", "alchemical signs, a word frantically scratched out", "a love letter", "a schedule of burnings", "a royal decree", "a declaration of war", "a psalm in seven languages", "a child’s name"],
+	"remains": ["Cairn was", "Skull was", "Skeleton was", "Chess pieces were", "Pottery fragments were", "Anchor was"],
+	"material": ["amethyst", "jade", "silver", "dried blood", "a rudimentary plastic", "an unknown metal", "weathered wood", "rusted copper", "obsidian", "glass", "opal", "agate", "silicon", "limestone", "iron", "cold ceramic", "painted coal"],
+	"found": ["located", "uncovered", "unearthed", "disinterred", "exhumed", "discovered", "extracted", "dug up", "extricated", "excavated"],
+	"location": ["in Ecuador", "in Guatemala", "in Antarctica", "just outside Seattle", "in Ontario", "in Mongolia", "in Greenland", "under Disneyland", "in Polynesia", "in New Zealand", "in Malaysia", "in Iowa", "in Norway", "in Estonia", "in Siberia", "in Namibia", "in Madagascar", "on the Moon", "in Qatar", "in Tierra del Fuego", "in Jordan", "in the Swiss Alps", "in Cyprus", "in Libya", "near Mumbai", "in the Himalayas", "in New Mexico", "in the Mariana Trench", "in the Chicxulub crater", "in Southern Franch", "in Jake Gyllenhaal's backyard"],
+	
+}
+var grammar = tracery.createGrammar(grammarObj)
+function generate(){
+	var t = grammar.flatten("#picture#", "#containter#", "#surface#", "#remains#");
+	$('h1').text(t);
+}
+</script>

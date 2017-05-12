@@ -1,0 +1,230 @@
+<style>
+h1 {
+	text-align: center;
+	font-size: 2em;
+	font-family: WG Silverleaf;
+    color: white;
+}
+#textDiv{
+	margin-top: 5%;
+}
+html { 
+  background: url(a.png) no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+<script src="../lib/jquery-1.11.1.min.js"></script>
+<script src="../lib/mousetrap.min.js"></script>
+<script>
+Mousetrap.bind("q", function(){
+	setBgImage('a.png')
+    typeText("there's something about islands that's always intrigued me")
+})
+Mousetrap.bind("w", function(){
+	setBgImage('b.png')
+    typeText("in seventh grade they were one of the only things i would (or could) draw in my sketchbook")
+})
+Mousetrap.bind("e", function(){
+	setBgImage('c.png')
+    typeText("i think part of it is because white perceptions of islands always concern escapism or exoticism")
+})
+Mousetrap.bind("r", function(){
+	setBgImage('d.png')
+    typeText("a consideration always within the context of the mainland, of the normative")
+})
+Mousetrap.bind("t", function(){
+	setBgImage('e.png')
+    typeText("(and god knows i was an escapist child)")
+})
+Mousetrap.bind("y", function(){
+	setBgImage('f.png')
+    typeText("but i think there’s more")
+})
+Mousetrap.bind("u", function(){
+    setBgImage('g.png')
+    typeText("the idea of containment")
+})
+Mousetrap.bind("i", function(){
+    setBgImage('h.png')
+    typeText("is")
+})
+Mousetrap.bind("o", function(){
+    setBgImage('i.png')
+    typeText("exciting")
+})
+Mousetrap.bind("p", function(){
+    setBgImage('j.png')
+    typeText("to exist in a limited space")
+})
+Mousetrap.bind("a", function(){
+    setBgImage('k.png')
+    typeText("doing the most with what you have, your limited resources")
+})
+Mousetrap.bind("s", function(){
+    setBgImage('l.png')
+    typeText("digging down instead of walking out")
+})
+Mousetrap.bind("d", function(){
+    setBgImage('m.png')
+    typeText("touching every inch of the map")
+})
+Mousetrap.bind("f", function(){
+    setBgImage('n.png')
+    typeText("getting to know a location as well as your own body")
+})
+Mousetrap.bind("g", function(){
+    setBgImage('o.png')
+    typeText("until it becomes an extension of that body")
+})
+Mousetrap.bind("h", function(){
+    setBgImage('p.png')
+    typeText("like your childhood home")
+})
+Mousetrap.bind("j", function(){
+    setBgImage('q.png')
+    typeText("where you are the only one who knows the best hiding places")
+})
+Mousetrap.bind("k", function(){
+    setBgImage('r.png')
+    typeText("the secret compartments")
+})
+Mousetrap.bind("l", function(){
+    setBgImage('s.png')
+    typeText("the ghosts in the walls")
+})
+Mousetrap.bind("z", function(){
+    setBgImage('a.png')
+    typeText("or like a piece of literature")
+})
+Mousetrap.bind("x", function(){
+    setBgImage('b.png')
+    typeText("that you've read")
+})
+Mousetrap.bind("c", function(){
+    setBgImage('c.png')
+    typeText("over")
+})
+Mousetrap.bind("v", function(){
+    setBgImage('d.png')
+    typeText("and over")
+})
+Mousetrap.bind("b", function(){
+    setBgImage('e.png')
+    typeText("and every time")
+})
+Mousetrap.bind("n", function(){
+    setBgImage('f.png')
+    typeText("you find")
+})
+Mousetrap.bind("m", function(){
+    setBgImage('g.png')
+    typeText("something new to squirm about")
+})
+
+
+
+
+
+
+
+
+
+
+
+Mousetrap.bind("", function(){
+	setBgImage('wink.gif')
+})
+
+Mousetrap.bind("space", function(){
+	setBgColor('green')
+	setTextColor('black')
+})
+Mousetrap.bind("backspace", function(){
+	$('h1').remove()
+})
+//bind same function to multiple keys
+Mousetrap.bind([], function(){
+	//play random sound
+	var randSound = $('audio')[Math.floor(Math.random()*$('audio').length)]
+	playSound(randSound.id)
+})
+
+//show multiple lines of text
+function showText (text){
+    $('#textDiv').append("<h1>"+text+"</h1>");
+    //scrolls to the bottom
+    $('#bottom')[0].scrollIntoView(false);
+
+}
+
+//replace the same text with new text
+function showText2 (text){
+    if($('#mainText').length == 0){
+        $('#textDiv').append("<h1 id='mainText'>"+text+"</h1>");
+    }
+    else {
+        $('#mainText').text(text);
+    }
+}
+function typeText(string, speed) {
+    var c = 0;
+    $('#textDiv').append('<h1></h1>');
+    var dest = $('h1:last')[0]; 
+    var i = setInterval(function () { //basically a while loop with a delay between each iteration
+        if (c >= string.length) {
+            $(dest).html(string);
+            clearInterval(i);
+        } else {
+            $('<span>').text(string[c]).
+            appendTo(dest);
+            c += 1;
+        }
+    }, speed); //this is the delay in milliseconds between each character, increase to slow down, decrease to speed up
+};
+//sounds overlap one another
+function playSound (id) {
+    sound = $("#" + id)[0]
+    if (sound.ended){sound.currentTime = 0};
+    if (sound.currentTime > 0){
+        sound.currentTime = 0
+    } else {
+        sound.play()
+    }
+}
+//one sound at a time
+var playSound2 = function(id) {
+    $(".played").each(function(){
+        this.pause();
+        this.currentTime = 0
+    }); 
+    sound = $("#" + id).addClass("played")[0]
+    if (sound.ended){sound.currentTime = 0};
+    if (sound.currentTime > 0){
+        sound.currentTime = 0
+    } else {
+        sound.play()
+    }
+
+}
+function setBgImage(fileName){
+    $("html").css('background-image', 'url('+fileName+')'); 
+}
+function setBgColor(color){
+    $("html").css('background-color', color); 
+    //image overrides color so we need to clear any background images
+    $('html').css('background-image', "")
+}
+function setTextColor(color){
+    $('html').css('color', color)
+}
+</script>
+<audio id="heart" src="heartbeat.mp3" preload="auto"></audio>
+<audio id="boom" src="explosion1.mp3" preload="auto"></audio>
+<audio id="sax" src="SFSax03.mp3" preload="auto"></audio>
+<div id="textDiv">
+<h1>1 - backspace <br> 2 - letter <br> 3 - scroll<br></h1>
+</div>
+<span id="bottom"></span>

@@ -1,0 +1,25 @@
+html {
+<font color="#F5A9A9">
+}
+<script src="../lib/jquery-1.11.1.min.js"></script>
+<script src="../lib/markov.js"></script>
+<font color="#F5A9A9">
+<script>
+var txt;
+var markov = new MarkovGeneratorWord(1,12)
+$.get("aeneid.txt", function(text) { 
+     markov.feed(text);
+
+});
+function generate(){
+	$("p").remove()
+	while($("p").length < 12 ){
+	var t = markov.generate()
+	$('body').append("<p>"+t+"</p>")
+	}
+
+}
+</script>
+<h1>Beowulf and Aeneas explore the wonders of male vulnerability.</h1>
+<button onclick="generate()">Onward with tears and archaic smiles!</button>
+</font>
